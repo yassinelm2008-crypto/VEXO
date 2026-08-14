@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ClipClean — تحميل الفيديو</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#0b0d12;color:#f7f7f8}
+.container{width:min(1050px,92%);margin:auto}.hero{min-height:92vh;display:grid;place-items:center;text-align:center;padding:50px 0}
+.badge{display:inline-block;padding:8px 14px;border:1px solid #333b4d;border-radius:99px;color:#b8c2d9;font-size:13px}
+h1{font-size:clamp(42px,8vw,78px);margin:22px 0 12px;letter-spacing:-2px}
+h1 span{color:#7c5cff}.lead{color:#aeb5c4;font-size:18px;line-height:1.8;max-width:650px;margin:0 auto 30px}
+.card{background:#121621;border:1px solid #252b38;border-radius:24px;padding:22px;box-shadow:0 20px 70px #0008}
+.form{display:flex;gap:10px;flex-wrap:wrap}.form input{flex:1;min-width:220px;background:#0b0e15;color:#fff;border:1px solid #303746;border-radius:14px;padding:16px;font-size:16px;direction:ltr}
+button{border:0;border-radius:14px;padding:15px 22px;background:#7c5cff;color:#fff;font-weight:700;font-size:16px;cursor:pointer}button:hover{filter:brightness(1.1)}
+.notice{display:none;margin-top:15px;color:#cbd2df;font-size:14px;line-height:1.7}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:30px 0 70px}.feature{background:#11151e;border:1px solid #232936;border-radius:20px;padding:22px}.feature b{display:block;margin-bottom:8px}.feature p{color:#969eae;line-height:1.7;margin:0}
+footer{text-align:center;color:#687083;padding:25px 0 45px;font-size:13px}
+@media(max-width:700px){.features{grid-template-columns:1fr}.hero{min-height:auto;padding:80px 0 40px}}
+</style>
+</head>
+<body>
+<main class="container">
+<section class="hero">
+<div>
+<span class="badge">CLIPCLEAN • النسخة الأولى</span>
+<h1>حمّل فيديوهاتك<br><span>ببساطة.</span></h1>
+<p class="lead">واجهة سريعة ونظيفة لتحضير رابط فيديو للتحميل. استعملها فقط مع الفيديوهات التي تملكها أو لديك إذن بتحميلها.</p>
+<div class="card">
+<div class="form">
+<input id="url" type="url" placeholder="ألصق رابط الفيديو هنا">
+<button onclick="prepareDownload()">تحضير التحميل</button>
+</div>
+<div id="notice" class="notice"></div>
+</div>
+</div>
+</section>
+
+<section class="features">
+<div class="feature"><b>⚡ سريع</b><p>واجهة خفيفة ومناسبة للهاتف.</p></div>
+<div class="feature"><b>🔒 واضح</b><p>لا تجمع الصفحة أي بيانات في هذه النسخة.</p></div>
+<div class="feature"><b>📱 متجاوب</b><p>كيخدم على الهاتف والكمبيوتر.</p></div>
+</section>
+<footer>© 2026 ClipClean — نسخة تجريبية</footer>
+</main>
+<script>
+function prepareDownload(){
+ const input=document.getElementById('url');
+ const notice=document.getElementById('notice');
+ const value=input.value.trim();
+ notice.style.display='block';
+ if(!value){notice.textContent='دخل رابط الفيديو أولاً.';return;}
+ try{new URL(value)}catch(e){notice.textContent='الرابط غير صحيح.';return;}
+ notice.textContent='تم التعرف على الرابط. هذه الواجهة حالياً Front-end فقط؛ لإضافة تحميل فعلي نحتاج Backend/API خاص بمصدر الفيديو، ويجب أن يكون التحميل مسموحاً به.';
+}
+</script>
+</body>
+</html>
